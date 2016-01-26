@@ -38,13 +38,13 @@ WP="/usr/local/bin/wp"
 DRUSH="/usr/bin/drush"
 
 #SGBD
-DBUSER="root"
+DBUSER="build-user"
 DBPWD="xxxxxxxxxxxxxx"
 DATABASE="`echo ${SITE_NAME} | sed 's/\.//g'`_dev"
 BDD_USER="${DATABASE}"
 BDD_PASSWORD=`< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c10`
 
-printf "\n${ARROW} Bienvenue dans le script de déploiement Comme un Arbre !\n"
+printf "\n${ARROW} Bienvenue dans le script de déploiement !\n"
 
 printf "\nVous allez installer un CMS à l'emplacement suivant : ${TARGET_DIR}\n"
 
@@ -118,7 +118,7 @@ elif [ "${CMS}" = "Wordpress" ]; then
 
     ${WP} core config --path="${TARGET_DIR}" --dbname="${DATABASE}" --dbuser="${BDD_USER}" --dbpass="${BDD_PASSWORD}" --dbprefix="cua_" || exit 1
 	${WP} core install --path="${TARGET_DIR}" --url="${SITE_URL}" --title="${SITE_NAME}" --admin_user="${USR_NAME}" --admin_password="${USR_PASSWORD}" --admin_email="${USR_MAIL}"
-	${WP} plugin install --path="${TARGET_DIR}" loco-translate ninja-forms w3-total-cache wp-smushit wp-jquery-plus advanced-sitemap-generator "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9NTUwMTJ8dHlwZT1kZXZlbG9wZXJ8ZGF0ZT0yMDE1LTA0LTI4IDA4OjE0OjEx" --activate
+	${WP} plugin install --path="${TARGET_DIR}" loco-translate ninja-forms w3-total-cache wp-smushit wp-jquery-plus advanced-sitemap-generator --activate
     ${WP} theme install --path="${TARGET_DIR}" https://bitbucket.org/commeunarbre/bones-cua/get/HEAD.zip --activate
 
 else
