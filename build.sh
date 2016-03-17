@@ -117,9 +117,9 @@ if [ "${CMS}" = "Drupal" ]; then
 elif [ "${CMS}" = "Wordpress" ]; then
 
     ${WP} core config --path="${TARGET_DIR}" --dbname="${DATABASE}" --dbuser="${BDD_USER}" --dbpass="${BDD_PASSWORD}" --dbprefix="cua_" || exit 1
-	${WP} core install --path="${TARGET_DIR}" --url="${SITE_URL}" --title="${SITE_NAME}" --admin_user="${USR_NAME}" --admin_password="${USR_PASSWORD}" --admin_email="${USR_MAIL}"
-	${WP} plugin install --path="${TARGET_DIR}" loco-translate ninja-forms w3-total-cache wp-smushit wp-jquery-plus advanced-sitemap-generator --activate
-    ${WP} theme install --path="${TARGET_DIR}" https://bitbucket.org/commeunarbre/bones-cua/get/HEAD.zip --activate
+    ${WP} core install --path="${TARGET_DIR}" --url="${SITE_URL}" --title="${SITE_NAME}" --admin_user="${USR_NAME}" --admin_password="${USR_PASSWORD}" --admin_email="${USR_MAIL}"
+    ${WP} plugin install --path="${TARGET_DIR}" wp-sitemap-page ninja-forms w3-total-cache wp-smushit wp-jquery-plus --activate
+    ${WP} theme install --path="${TARGET_DIR}" https://github.com/Bertrand31/WP_Kickstart/archive/master.zip --activate
 
 else
 	printf "\nErreur fatale\n"
